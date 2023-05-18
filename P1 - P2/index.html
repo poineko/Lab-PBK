@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Lab PBK 1</title>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background-color: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+        }
+        body {
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        p, h3, ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.tanda {
+            background: pink;
+            color: azure;
+        }
+      
+    </style>
+</head>
+<body>
+    <h1> Hello Vue :) </h1>
+    <div id="App">
+        <div v-if="tampilanP1">
+            <h3> nama: {{ nama }} </h3>
+            <h3> umur: {{ umur }} </h3>
+            <button v-on:click="umur++"> tambah </button>
+            <button v-on:click="umur--"> kurang </button>
+            <button @click="tombolUbah"> ubah </button>
+            <button @click="tombolUbahPmr('alriawi')"> ubah dgn Paramater </button>
+        </div>
+        <button @click="tombolTampilP1"> 
+            <span v-if="tampilanP1">Hilangkan P1</span>
+            <span v-else>Munculkan P1</span>
+        </button>
+        <br>
+        <div v-if="tampilanP2">
+            <!-- mouse event -->
+            <div class="box" @mouseover="handleEvent($event, 5)" >Mouse Over (enter)</div>
+            <div class="box" @mouseleave="handleEvent" >Mouse Leave</div>
+            <div class="box" @dblclick="handleEvent" >Double Click</div>
+            <div class="box" @mousemove="handleMouseMove" > posisi X : {{X}} - posisi y : {{y}} </div>
+            
+            <!-- array data -->
+            <ul>
+                <li v-for="mhs in mhs" :class="{ tanda : mhs.tandai }" @click="handleTanda(mhs)">
+                    <img :src="mhs.img" :alt="mhs.nama">
+                    <h3> {{mhs.nama}} </h3>
+                    <p>  {{mhs.npm}} </p>
+                </li>
+            </ul>
+
+            <br>
+            <br>
+
+            
+            <ul>
+                <li v-for="mhs in filteredMhs" :class="{ tanda : mhs.tandai }" @click="handleTanda(mhs)">
+                    <img :src="mhs.img" :alt="mhs.nama">
+                    <h3> {{mhs.nama}} </h3>
+                    <p>  {{mhs.npm}} </p>
+                </li>
+            </ul>
+
+        </div>
+        <button @click="tombolTampilP2"> 
+            <span v-if="tampilanP2">Hilangkan P2</span>
+            <span v-else>Munculkan P2</span>
+        </button>
+    </div>
+
+    <script src="App.js"></script>
+</body>
+</html>
